@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171512">
+  <title>Két jegy neked ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      color-scheme: dark;
+      --cream: #f4eadb;
+      --muted: #b8aa98;
+      --gold: #c9a879;
+      --background: #171512;
+      --rose: #d7a6a0;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 55px 24px;
+      display: grid;
+      place-items: center;
+      color: var(--cream);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(130, 91, 63, .19), transparent 48%),
+        var(--background);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .page {
+      width: min(100%, 950px);
+      margin: auto;
+    }
+
+    .intro {
+      max-width: 620px;
+      margin: 0 auto 55px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      letter-spacing: .24em;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    h1, h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 500;
+    }
+
+    h1 {
+      margin: 17px 0 13px;
+      font-size: clamp(36px, 7vw, 58px);
+      line-height: 1.08;
+    }
+
+    h1 span {
+      margin-left: 10px;
+      color: var(--gold);
+    }
+
+    .intro p {
+      max-width: 460px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .tickets {
+      display: grid;
+      gap: 25px;
+    }
+
+    .ticket-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 145px;
+      align-items: stretch;
+      gap: 16px;
+    }
+
+    .ticket {
+      --accent: #c9a879;
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 116px;
+      min-height: 242px;
+      overflow: hidden;
+      border: 1px solid rgba(221, 197, 162, .42);
+      border-radius: 13px;
+      background:
+        linear-gradient(115deg, rgba(255,255,255,.035), transparent 46%),
+        #28231e;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, .24);
+    }
+
+    .ticket-gift {
+      --accent: #d7a6a0;
+      border-color: rgba(215, 166, 160, .43);
+      background:
+        linear-gradient(115deg, rgba(255,255,255,.035), transparent 46%),
+        #2b2222;
+    }
+
+    .ticket-main {
+      min-width: 0;
+      padding: 25px 30px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ticket-top,
+    .ticket-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .ticket-type,
+    .small-label {
+      color: var(--accent);
+      letter-spacing: .16em;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .heart {
+      color: var(--accent);
+      font-size: 25px;
+      line-height: 1;
+    }
+
+    .ticket-title-wrap {
+      padding: 16px 0;
+    }
+
+    .small-label {
+      font-size: 9px;
+    }
+
+    h2 {
+      margin: 5px 0 7px;
+      font-size: clamp(34px, 5vw, 48px);
+      line-height: 1.1;
+    }
+
+    .secret {
+      margin: 0;
+      color: #c5b8a8;
+      font-size: 13px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .ticket-bottom {
+      color: #a99a88;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+
+    .serial {
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .ticket-stub {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-left: 1px dashed rgba(221, 197, 162, .5);
+      background: rgba(0, 0, 0, .12);
+    }
+
+    .ticket-stub::before,
+    .ticket-stub::after {
+      position: absolute;
+      left: -10px;
+      width: 19px;
+      height: 19px;
+      content: "";
+      border: 1px solid rgba(221, 197, 162, .35);
+      border-radius: 50%;
+      background: var(--background);
+    }
+
+    .ticket-stub::before {
+      top: -10px;
+    }
+
+    .ticket-stub::after {
+      bottom: -10px;
+    }
+
+    .stub-heart {
+      color: var(--accent);
+      font-size: 22px;
+      margin-bottom: 7px;
+    }
+
+    .stub-text,
+    .stub-year {
+      color: #b8aa98;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+
+    .ticket-stub strong {
+      color: var(--accent);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 27px;
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
+    /* Letöltőpanel */
+    .download-btn {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      width: 100%;
+      min-height: 100%;
+      padding: 20px 12px;
+      border: 1px solid rgba(201, 168, 121, .35);
+      border-radius: 13px;
+      background:
+        linear-gradient(145deg, rgba(201, 168, 121, .09), rgba(201, 168, 121, .025));
+      color: var(--gold);
+      font-family: "DM Sans", sans-serif;
+      cursor: pointer;
+      transition:
+        background .25s ease,
+        border-color .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .ticket-row:nth-child(2) .download-btn {
+      border-color: rgba(215, 166, 160, .35);
+      color: var(--rose);
+      background:
+        linear-gradient(145deg, rgba(215, 166, 160, .09), rgba(215, 166, 160, .025));
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      background: rgba(201, 168, 121, .13);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .18);
+    }
+
+    .ticket-row:nth-child(2) .download-btn:hover {
+      border-color: var(--rose);
+      background: rgba(215, 166, 160, .13);
+    }
+
+    .download-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      font-size: 21px;
+      font-weight: 400;
+      transition: transform .25s ease;
+    }
+
+    .download-btn:hover .download-icon {
+      transform: translateY(3px);
+    }
+
+    .download-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .download-format {
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: .16em;
+      font-weight: 600;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 35px;
+      color: #8f8273;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+
+    .footer b {
+      color: var(--gold);
+      font-size: 13px;
+    }
+
+    @media (max-width: 650px) {
+      body {
+        padding: 38px 16px;
+      }
+
+      .intro {
+        margin-bottom: 35px;
+      }
+
+      .tickets {
+        gap: 25px;
+      }
+
+      .ticket-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .ticket {
+        grid-template-columns: minmax(0, 1fr) 82px;
+        min-height: 220px;
+      }
+
+      .ticket-main {
+        padding: 21px 18px 19px;
+      }
+
+      .ticket-type {
+        font-size: 8px;
+        letter-spacing: .12em;
+      }
+
+      .ticket-bottom {
+        font-size: 7px;
+        letter-spacing: .1em;
+      }
+
+      .download-btn {
+        min-height: 65px;
+        flex-direction: row;
+        gap: 13px;
+        padding: 10px 18px;
+      }
+
+      .download-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+      }
+
+      .download-format {
+        margin-left: auto;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        line-height: 1.8;
+      }
+    }
+
+    @media print {
+      body {
+        min-height: auto;
+        padding: 20px;
+        background: #171512;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .page {
+        max-width: 760px;
+      }
+
+      .intro {
+        margin-bottom: 24px;
+      }
+
+      .ticket {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="intro">
+      <span class="eyebrow">ANNÁNAK ♡</span>
+      <h1>Két apró meglepetés<span>♡</span></h1>
+      <p>Két jegy, amiket beválthatsz ha hazaértem</p>
+    </header>
+
+    <section class="tickets" aria-label="A két jegy">
+
+      <!-- RANDIJEGY -->
+      <div class="ticket-row">
+        <article class="ticket ticket-date" id="ticket-date">
+          <div class="ticket-main">
+            <div class="ticket-top">
+              <span class="ticket-type">01 · TITKOS RANDI</span>
+              <span class="heart">♡</span>
+            </div>
+
+            <div class="ticket-title-wrap">
+              <span class="small-label">A TE JEGYED</span>
+              <h2>Randijegy</h2>
+              <p class="secret">A program a randi napján derül majd ki</p>
+            </div>
+
+            <div class="ticket-bottom">
+              <span>KIS TIPP: EGY KEDVENC KÖZÖS EMLÉKÜNKHÖZ KÖTŐDIK</span>
+              <span class="serial">№ 001</span>
+            </div>
+          </div>
+
+          <div class="ticket-stub">
+            <span class="stub-heart">♡</span>
+            <span class="stub-text">ÉRVÉNYES</span>
+            <strong>12·31</strong>
+            <span class="stub-year">2026</span>
+          </div>
+        </article>
+
+        <button class="download-btn"
+          onclick="downloadTicket('ticket-date', 'Randijegy')">
+          <span class="download-icon">↓</span>
+          <span class="download-label">Jegy letöltése</span>
+          <span class="download-format">PNG · KÉP</span>
+        </button>
+      </div>
+
+      <!-- AJÁNDÉKJEGY -->
+      <div class="ticket-row">
+        <article class="ticket ticket-gift" id="ticket-gift">
+          <div class="ticket-main">
+            <div class="ticket-top">
+              <span class="ticket-type">02 · EGY KIS AJÁNDÉK</span>
+              <span class="heart">♡</span>
+            </div>
+
+            <div class="ticket-title-wrap">
+              <span class="small-label">A TE JEGYED</span>
+              <h2>Ajándékjegy</h2>
+              <p class="secret"></p>
+            </div>
+
+            <div class="ticket-bottom">
+              <span>EGY APRÓ AJÁNDÉK</span>
+              <span class="serial">№ 002</span>
+            </div>
+          </div>
+
+          <div class="ticket-stub">
+            <span class="stub-heart">♡</span>
+            <span class="stub-text">ÉRVÉNYES</span>
+            <strong>12·31</strong>
+            <span class="stub-year">2026</span>
+          </div>
+        </article>
+
+        <button class="download-btn"
+          onclick="downloadTicket('ticket-gift', 'Ajandekjegy')">
+          <span class="download-icon">↓</span>
+          <span class="download-label">Jegy letöltése</span>
+          <span class="download-format">PNG · KÉP</span>
+        </button>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      <span>ÉRVÉNYESSÉG: 2026. DECEMBER 31.</span>
+      <span>Készítette szeretettel: Laci <b>♡</b></span>
+    </footer>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <script>
+    async function downloadTicket(id, filename) {
+      const ticket = document.getElementById(id);
+      const buttons = document.querySelectorAll(".download-btn");
+
+      buttons.forEach(button => button.disabled = true);
+
+      try {
+        const canvas = await html2canvas(ticket, {
+          scale: 3,
+          backgroundColor: null,
+          useCORS: true
+        });
+
+        const link = document.createElement("a");
+        link.download = filename + ".png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+
+      } catch (error) {
+        alert("A jegy letöltése nem sikerült. Próbáld újra!");
+        console.error(error);
+      } finally {
+        buttons.forEach(button => button.disabled = false);
+      }
+    }
+  </script>
+</body>
+</html>
